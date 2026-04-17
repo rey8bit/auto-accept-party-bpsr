@@ -9,9 +9,11 @@ A lightweight automation tool with a modern interface (**Dark Mode**) for automa
 This tool is designed to make it easier for players to automatically accept party requests while focused on the game screen, using efficient image detection.
 
 ### 📸 Interface Preview
-| Full Mode (Active) | Mini Mode |
-|---|---|
-| ![Full UI](app2.png) | ![Mini Mode](appmini.png) |
+| Full Mode (Active) | Mini Mode | Detected |
+|---|---|---|
+| ![Full UI](app2.png) | ![Mini Mode](appmini.png) | ![Player Detected Screenshot](appdetected.png) |
+
+Some of pictures was taken on previous build, but still same function.
 
 ### ✨ Key Features
 - **Full Dark Mode**: "Midnight Stealth" dark theme, easy on the eyes for long gaming sessions.
