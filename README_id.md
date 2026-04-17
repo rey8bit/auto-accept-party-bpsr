@@ -8,6 +8,10 @@ Alat bantu otomatisasi ringan dengan antarmuka modern (**Dark Mode**) untuk mene
 
 Alat ini dirancang untuk memudahkan pemain menerima permintaan party secara otomatis saat fokus pada layar permainan, menggunakan deteksi gambar yang efisien.
 
+### Cara Penggunaan
+1. Setelah mengkompilasi kode menjadi file yang dapat dieksekusi (atau cukup jalankan kode python di folder tertentu, jika Anda tahu caranya), jangan lupa untuk menambahkan gambar yang akan dideteksi, seperti "party_apply.png" di folder yang sama.
+2. Jalankan kode atau aplikasi seperti biasa.
+
 ### 📸 Pratinjau Antarmuka
 | Mode Penuh (Aktif) | Mode Mini | Terdeteksi |
 |---|---|---|
