@@ -1,4 +1,4 @@
-# BPSR Auto-Accept Party Tool
+# BPSR Auto-Accept Party Tool (experimental)
 
 [Bahasa Indonesia](README_id.md) / **English**
 
