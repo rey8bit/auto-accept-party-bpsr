@@ -8,6 +8,10 @@ A lightweight automation tool with a modern interface (**Dark Mode**) for automa
 
 This tool is designed to make it easier for players to automatically accept party requests while focused on the game screen, using efficient image detection.
 
+### How to use
+1. After compile the code to executeable (or just simply run the python code on specific folder, if you know to do), don't forget to add the image to detect, like "party_apply.png" on same folder.
+2. Run the code or app as usual.
+
 ### 📸 Interface Preview
 | Full Mode (Active) | Mini Mode | Detected |
 |---|---|---|
