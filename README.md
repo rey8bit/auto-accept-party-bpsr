@@ -2,7 +2,6 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Game](https://img.shields.io/badge/Game-Blue%20Protocol%3A%20Star%20Resonance-orange)](https://blue-protocol.com/)
 
 Alat bantu otomatisasi ringan dengan antarmuka modern (Dark Mode) untuk menerima permintaan party secara otomatis di **Blue Protocol: Star Resonance**.
 
