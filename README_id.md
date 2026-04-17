@@ -9,9 +9,11 @@ Alat bantu otomatisasi ringan dengan antarmuka modern (**Dark Mode**) untuk mene
 Alat ini dirancang untuk memudahkan pemain menerima permintaan party secara otomatis saat fokus pada layar permainan, menggunakan deteksi gambar yang efisien.
 
 ### 📸 Pratinjau Antarmuka
-| Mode Penuh (Aktif) | Mode Mini |
-|---|---|
-| ![Full UI](app2.png) | ![Mini Mode](appmini.png) |
+| Mode Penuh (Aktif) | Mode Mini | Terdeteksi |
+|---|---|---|
+| ![Full UI](app2.png) | ![Mini Mode](appmini.png) | ![Pemain Terdeteksi](appdetected.png) |
+
+Beberapa gambar diambil pada versi sebelumnya, tetapi fungsinya tetap sama.
 
 ### ✨ Fitur Unggulan
 - **Full Dark Mode**: Tema gelap "Midnight Stealth", nyaman di mata untuk sesi gaming yang lama.
