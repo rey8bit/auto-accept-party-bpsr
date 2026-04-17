@@ -1,9 +1,12 @@
-# BPSR Auto-Accept Party Tool (Experimental)
+# BPSR Auto-Accept Party Tool (eksperimental)
+
+**Bahasa Indonesia** / [English](README.md)
 
 Alat bantu otomatisasi ringan dengan antarmuka modern (**Dark Mode**) untuk menerima permintaan party secara otomatis di **Blue Protocol: Star Resonance**.
-Hanya tersedia dalam bahasa Indonesia saja dan client khusus Steam.
 
-Alat ini dirancang untuk memudahkan pemain menerima permintaan party secara otomatis ketika fokus ke layar game, menggunakan deteksi gambar yang efisien.
+> **Catatan:** Dioptimalkan untuk klien Steam (`StarSEA_Steam.exe`). Gunakan dengan risiko Anda sendiri.
+
+Alat ini dirancang untuk memudahkan pemain menerima permintaan party secara otomatis saat fokus pada layar permainan, menggunakan deteksi gambar yang efisien.
 
 ### 📸 Pratinjau Antarmuka
 | Mode Penuh (Aktif) | Mode Mini |
@@ -11,16 +14,16 @@ Alat ini dirancang untuk memudahkan pemain menerima permintaan party secara otom
 | ![Full UI](app2.png) | ![Mini Mode](appmini.png) |
 
 ### ✨ Fitur Unggulan
-- **Full Dark Mode**: Tema gelap "Midnight Stealth" yang nyaman di mata untuk sesi gaming lama.
-- **Modular UI**: Pindah ke **Mini Mode** untuk tampilan yang sangat ringkas di pojok layar.
-- **Log Toggle**: Tampilkan atau sembunyikan riwayat aktivitas deteksi sesuai kebutuhan.
-- **Focus Awareness**: Skrip hanya akan memindai layar jika jendela game (`StarSEA_Steam.exe`) sedang aktif. Otomatis **Standby** saat Alt-Tab.
+- **Full Dark Mode**: Tema gelap "Midnight Stealth", nyaman di mata untuk sesi gaming yang lama.
+- **Modular UI**: Pindah ke **Mode Mini** untuk tampilan yang sangat ringkas di pojok layar Anda.
+- **Log Toggle**: Tampilkan atau sembunyikan log aktivitas deteksi sesuai kebutuhan.
+- **Focus Awareness**: Skrip hanya akan memindai layar jika jendela game (`StarSEA_Steam.exe`) sedang aktif. Otomatis masuk ke mode **Standby** saat Anda melakukan Alt-Tab.
 - **Top Toggle**: Tombol "**Top**" untuk menjaga jendela aplikasi tetap melayang di atas jendela game.
-- **Optimasi Performa**: Penggunaan CPU rendah dengan logika pemindaian adaptif.
+- **Optimasi Performa**: Penggunaan CPU yang rendah melalui logika pemindaian adaptif.
 
-### 🛠️ Cara Instalasi & Build
+### 🛠️ Panduan Instalasi & Build
 1. Instal [Python 3.10+](https://www.python.org/downloads/).
-2. Unduh repositori ini dan buka terminal/CMD di folder tersebut.
-3. Jalankan perintah berikut untuk menginstal library:
+2. Unduh repositori ini dan buka terminal/CMD di folder proyek.
+3. Instal pustaka (library) yang diperlukan:
    ```bash
    pip install -r requirements.txt
