@@ -1,11 +1,11 @@
-# BPSR Auto-Accept Party Tool
+# BPSR Auto-Accept Party Tool (Experimental)
 
 Alat bantu otomatisasi ringan dengan antarmuka modern (**Dark Mode**) untuk menerima permintaan party secara otomatis di **Blue Protocol: Star Resonance**.
-Hanya tersedia dalam bahasa Indonesia saja.
+Hanya tersedia dalam bahasa Indonesia saja dan client khusus Steam.
 
 ---
 
-## 🇮🇩 Bahasa Indonesia
+## Bahasa Indonesia
 
 Alat ini dirancang untuk memudahkan pemain menerima permintaan party secara otomatis ketika fokus ke layar game, menggunakan deteksi gambar yang efisien.
 
@@ -29,9 +29,10 @@ Alat ini dirancang untuk memudahkan pemain menerima permintaan party secara otom
    ```bash
    pip install -r requirements.txt
 
-## 🇺🇸 English
+## English
 
-A lightweight automation tool with a modern interface (Dark Mode) to automatically accept party requests in Blue Protocol: Star Resonance. Available in Indonesian only.
+A lightweight automation tool with a modern interface (**Dark Mode**) for automatically accepting party requests in **Blue Protocol: Star Resonance**.
+Available in Indonesian only and on the Steam client.
 
 This tool is designed to make it easier for players to automatically accept party requests while focused on the game screen, using efficient image detection.
 
