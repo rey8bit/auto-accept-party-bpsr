@@ -7,7 +7,7 @@ Hanya tersedia dalam bahasa Indonesia saja.
 
 ## 🇮🇩 Bahasa Indonesia
 
-Alat ini dirancang untuk memudahkan pemain menerima permintaan party secara otomatis tanpa harus mengalihkan fokus dari permainan, menggunakan deteksi gambar yang efisien.
+Alat ini dirancang untuk memudahkan pemain menerima permintaan party secara otomatis ketika fokus ke layar game, menggunakan deteksi gambar yang efisien.
 
 ### 📸 Pratinjau Antarmuka
 | Mode Penuh (Aktif) | Mode Mini |
@@ -31,8 +31,9 @@ Alat ini dirancang untuk memudahkan pemain menerima permintaan party secara otom
 
 ## 🇺🇸 English
 
-This tool is designed to help players automatically accept party requests without losing focus on the game, utilizing efficient image detection.
-Available in Indonesian only.
+A lightweight automation tool with a modern interface (Dark Mode) to automatically accept party requests in Blue Protocol: Star Resonance. Available in Indonesian only.
+
+This tool is designed to make it easier for players to automatically accept party requests while focused on the game screen, using efficient image detection.
 
 ### 📸 Interface Preview
 | Full Mode (Active) | Mini Mode |
