@@ -23,11 +23,12 @@ Karena alat ini didistribusikan sebagai kode sumber demi transparansi, kamu memb
 1. Instal [Python 3.10+](https://www.python.org/downloads/).
 2. Kloning/unduh repositori ini.
 3. Instal pustaka yang dibutuhkan dengan menjalankan: `pip install -r requirements.txt`
-4. Letakkan gambar targetmu (contoh: `party_request.png`) di folder aplikasi.
+4. Letakkan gambar targetmu (contoh: `party_request_1080.png`) di folder aplikasi.
 Contoh: Gambar yang di-*crop* ini diambil pada resolusi 1080p.
 ![Contoh](party_request_1080.png)
 5. Jalankan skrip melalui terminal: `python bpsr_auto_accept_gui.py` (atau jadikan `.exe` sendiri menggunakan PyInstaller).
-6. Tekan **F9** atau klik tombol *play* untuk menjalankan aplikasi.
+6. Sesuaikan nama gambar di setting agar bisa dibaca oleh aplikasi, misalnya di Nama Gambar `party_request_1080.png` 
+7. Tekan **F9** atau klik tombol *play* untuk menjalankan aplikasi.
 
 ---
 *Dioptimalkan untuk `StarSEA_Steam.exe`, tetapi kamu bisa mengubahnya untuk klien mandiri (standalone) dengan mengedit skrip. Gunakan dengan risiko ditanggung sendiri.*

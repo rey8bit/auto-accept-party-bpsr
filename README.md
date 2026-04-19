@@ -21,11 +21,12 @@ Since this tool is distributed as source code for transparency, you need Python 
 1. Install [Python 3.10+](https://www.python.org/downloads/).
 2. Clone/download this repository.
 3. Install the required dependencies by running: `pip install -r requirements.txt`
-4. Place your target image (example: `party_request.png`) in the application folder.
+4. Place your target image (example: `party_request_1080.png`) in the application folder.
 Example: This cropped image was taken at 1080p resolution.
 ![Example](party_request_1080.png)
 5. Run the script via terminal: `python bpsr_auto_accept_gui.py` (or compile it yourself using PyInstaller).
-6. Press **F9** or click play to run the app.
+6. Adjust the image name in the settings so that it can be read by the application, for example in Image Name `party_request_1080.png`
+7. Press **F9** or click play to run the app.
 
 ---
 *Optimized for `StarSEA_Steam.exe`, but you can change for standalone client by editing the script. Use at your own risk.*
