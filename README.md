@@ -1,35 +1,29 @@
-# BPSR Auto-Accept Party Tool (experimental)
+# BPSR Auto-Accept Party Tool
 
-[Bahasa Indonesia](README_id.md) / **English**
+A lightweight, open-source automation tool to automatically accept party invites in **Blue Protocol: Star Resonance**.
 
-A lightweight automation tool with a modern interface (**Dark Mode**) for automatically accepting party requests in **Blue Protocol: Star Resonance**. 
+### ✨ Features
+- **Auto-Scale**: Works on any resolution (1080p, 900p, 720p, etc.) without extra setup.
+- **ESP Overlay**: Visual boxes to track scanning area and targets.
+- **MSS + OpenCV**: Fast detection with very low CPU usage.
+- **Multi-Language**: Easy translation via JSON files in the `lang/` folder.
+- **Mini Mode**: Compact UI to save screen space.
 
-> **Note:** Optimized for the Steam client (`StarSEA_Steam.exe`). Use at your own risk.
+### ⌨️ Hotkeys
+- **F9**: Start Scanning
+- **F10**: Stop Scanning
+- **F11**: Toggle Always-on-Top
 
-This tool is designed to make it easier for players to automatically accept party requests while focused on the game screen, using efficient image detection.
-
-### How to use
-1. After compile the code to executeable (or just simply run the python code on specific folder, if you know to do), don't forget to add the image to detect, like "party_apply.png" on same folder.
-2. Run the code or app as usual.
-
-### 📸 Interface Preview
-| Full Mode (Active) | Mini Mode | Detected |
-|---|---|---|
-| ![Full UI](app2.png) | ![Mini Mode](appmini.png) | ![Player Detected Screenshot](appdetected.png) |
-
-Some of pictures was taken on previous build, but still same function.
-
-### ✨ Key Features
-- **Full Dark Mode**: "Midnight Stealth" dark theme, easy on the eyes for long gaming sessions.
-- **Modular UI**: Switch to **Mini Mode** for an ultra-compact view in the corner of your screen.
-- **Log Toggle**: Show or hide the detection activity log as needed.
-- **Focus Awareness**: The script only scans the screen when the game window (`StarSEA_Steam.exe`) is active. It automatically enters **Standby** mode when you Alt-Tab.
-- **Top Toggle**: "**Top**" button to keep the application window floating over the game window.
-- **Performance Optimization**: Low CPU usage through adaptive scanning logic.
-
-### 🛠️ Installation & Build Guide
+### 🛠️ Installation & How to Use
+Since this tool is distributed as source code for transparency, you need Python to run or compile it:
 1. Install [Python 3.10+](https://www.python.org/downloads/).
-2. Download this repository and open a terminal/CMD in the project folder.
-3. Install the required libraries:
-   ```bash
-   pip install -r requirements.txt
+2. Clone/download this repository.
+3. Install the required dependencies by running: `pip install -r requirements.txt`
+4. Place your target image (example: `party_request.png`) in the application folder.
+Example: This cropped image was taken at 1080p resolution.
+![Example](party_request_1080.png)
+5. Run the script via terminal: `python bpsr_auto_accept_gui.py` (or compile it yourself using PyInstaller).
+6. Press **F9** or click play to run the app.
+
+---
+*Optimized for `StarSEA_Steam.exe`, but you can change for standalone client by editing the script. Use at your own risk.*

@@ -1,35 +1,33 @@
-# BPSR Auto-Accept Party Tool (eksperimental)
+# BPSR Auto-Accept Party Tool
 
-**Bahasa Indonesia** / [English](README.md)
+[English](README.md) / **Bahasa Indonesia**
 
-Alat bantu otomatisasi ringan dengan antarmuka modern (**Dark Mode**) untuk menerima permintaan party secara otomatis di **Blue Protocol: Star Resonance**.
+# BPSR Auto-Accept Party Tool
 
-> **Catatan:** Dioptimalkan untuk klien Steam (`StarSEA_Steam.exe`). Gunakan dengan risiko Anda sendiri.
+Alat otomatisasi *open-source* yang ringan untuk menerima undangan *party* secara otomatis di **Blue Protocol: Star Resonance**.
 
-Alat ini dirancang untuk memudahkan pemain menerima permintaan party secara otomatis saat fokus pada layar permainan, menggunakan deteksi gambar yang efisien.
+### ✨ Fitur Utama
+- **Auto-Scale**: Mendukung semua resolusi layar (1080p, 900p, 720p, dll.) tanpa pengaturan tambahan.
+- **ESP Overlay**: Indikator kotak visual untuk melacak area pemindaian dan target.
+- **MSS + OpenCV**: Deteksi gambar super cepat dengan penggunaan CPU yang sangat rendah.
+- **Multi-Bahasa**: Terjemahan mudah melalui file JSON di folder `lang/`.
+- **Mode Mini**: Tampilan ringkas untuk menghemat ruang layar.
 
-### Cara Penggunaan
-1. Setelah mengkompilasi kode menjadi file yang dapat dieksekusi (atau cukup jalankan kode python di folder tertentu, jika Anda tahu caranya), jangan lupa untuk menambahkan gambar yang akan dideteksi, seperti "party_apply.png" di folder yang sama.
-2. Jalankan kode atau aplikasi seperti biasa.
+### ⌨️ Tombol Cepat (Hotkeys)
+- **F9**: Mulai Pemindaian
+- **F10**: Berhenti Memindai
+- **F11**: Aktifkan/Matikan Mode Selalu di Atas (Always-on-Top)
 
-### 📸 Pratinjau Antarmuka
-| Mode Penuh (Aktif) | Mode Mini | Terdeteksi |
-|---|---|---|
-| ![Full UI](app2.png) | ![Mini Mode](appmini.png) | ![Pemain Terdeteksi](appdetected.png) |
-
-Beberapa gambar diambil pada versi sebelumnya, tetapi fungsinya tetap sama.
-
-### ✨ Fitur Unggulan
-- **Full Dark Mode**: Tema gelap "Midnight Stealth", nyaman di mata untuk sesi gaming yang lama.
-- **Modular UI**: Pindah ke **Mode Mini** untuk tampilan yang sangat ringkas di pojok layar Anda.
-- **Log Toggle**: Tampilkan atau sembunyikan log aktivitas deteksi sesuai kebutuhan.
-- **Focus Awareness**: Skrip hanya akan memindai layar jika jendela game (`StarSEA_Steam.exe`) sedang aktif. Otomatis masuk ke mode **Standby** saat Anda melakukan Alt-Tab.
-- **Top Toggle**: Tombol "**Top**" untuk menjaga jendela aplikasi tetap melayang di atas jendela game.
-- **Optimasi Performa**: Penggunaan CPU yang rendah melalui logika pemindaian adaptif.
-
-### 🛠️ Panduan Instalasi & Build
+### 🛠️ Instalasi & Cara Menggunakan
+Karena alat ini didistribusikan sebagai kode sumber demi transparansi, kamu membutuhkan Python untuk menjalankan atau melakukan *compile*:
 1. Instal [Python 3.10+](https://www.python.org/downloads/).
-2. Unduh repositori ini dan buka terminal/CMD di folder proyek.
-3. Instal pustaka (library) yang diperlukan:
-   ```bash
-   pip install -r requirements.txt
+2. Kloning/unduh repositori ini.
+3. Instal pustaka yang dibutuhkan dengan menjalankan: `pip install -r requirements.txt`
+4. Letakkan gambar targetmu (contoh: `party_request.png`) di folder aplikasi.
+Contoh: Gambar yang di-*crop* ini diambil pada resolusi 1080p.
+![Contoh](party_request_1080.png)
+5. Jalankan skrip melalui terminal: `python bpsr_auto_accept_gui.py` (atau jadikan `.exe` sendiri menggunakan PyInstaller).
+6. Tekan **F9** atau klik tombol *play* untuk menjalankan aplikasi.
+
+---
+*Dioptimalkan untuk `StarSEA_Steam.exe`, tetapi kamu bisa mengubahnya untuk klien mandiri (standalone) dengan mengedit skrip. Gunakan dengan risiko ditanggung sendiri.*
