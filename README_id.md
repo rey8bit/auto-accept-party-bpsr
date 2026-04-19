@@ -5,6 +5,7 @@
 # BPSR Auto-Accept Party Tool
 
 Alat otomatisasi *open-source* yang ringan untuk menerima undangan *party* secara otomatis di **Blue Protocol: Star Resonance**.
+*Aplikasi ini sedang dalam pengembangan aktif; sebagai versi eksperimental, aplikasi mungkin belum stabil.*
 
 ### ✨ Fitur Utama
 - **Auto-Scale**: Mendukung semua resolusi layar (1080p, 900p, 720p, dll.) tanpa pengaturan tambahan.

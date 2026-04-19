@@ -3,6 +3,7 @@
 [Bahasa Indonesia](README_id.md) / **English**
 
 A lightweight, open-source automation tool to automatically accept party invites in **Blue Protocol: Star Resonance**.
+*This application is currently in active development; as an experimental build, it may be unstable.*
 
 ### ✨ Features
 - **Auto-Scale**: Works on any resolution (1080p, 900p, 720p, etc.) without extra setup.
