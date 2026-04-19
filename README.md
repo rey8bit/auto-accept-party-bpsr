@@ -1,5 +1,7 @@
 # BPSR Auto-Accept Party Tool
 
+[Bahasa Indonesia](README_id.md) / **English**
+
 A lightweight, open-source automation tool to automatically accept party invites in **Blue Protocol: Star Resonance**.
 
 ### ✨ Features
