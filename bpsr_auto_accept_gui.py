@@ -36,6 +36,7 @@ def inisialisasi_folder_bahasa():
 
     # Data Bahasa Indonesia (Default)
     teks_id = {
+        "lang_name": "Bahasa Indonesia",
         "title": "BPSR Alat Auto-Accept Party",
         "header": "ALAT BPSR AUTO-ACCEPT PARTY",
         "start": "MULAI (F9)",
@@ -80,6 +81,7 @@ def inisialisasi_folder_bahasa():
 
     # Data Bahasa Inggris
     teks_en = {
+        "lang_name": "English (US)",
         "title": "BPSR Auto-Accept Party Tool",
         "header": "BPSR AUTO-ACCEPT PARTY TOOL",
         "start": "START (F9)",
@@ -183,7 +185,7 @@ class BPSR_Precision_GUI:
         self.root = root
         
         # Variabel Bahasa Dinamis
-        self.daftar_bahasa = []
+        self.daftar_bahasa = {} # Sekarang ini adalah Dictionary
         self.lang = "id"
         self.translations = {}
         
@@ -227,16 +229,24 @@ class BPSR_Precision_GUI:
         self.root.after(100, self.update_esp_ui)
 
     def muat_daftar_bahasa(self):
-        """Mendeteksi semua file .json di folder lang secara dinamis"""
-        self.daftar_bahasa = []
+        """Mendeteksi file .json dan membaca nama aslinya (lang_name)"""
+        self.daftar_bahasa = {}
         if os.path.exists("lang"):
             for file in os.listdir("lang"):
                 if file.endswith(".json"):
-                    self.daftar_bahasa.append(file.replace(".json", ""))
+                    kode = file.replace(".json", "")
+                    try:
+                        with open(os.path.join("lang", file), "r", encoding="utf-8") as f:
+                            data = json.load(f)
+                            # Jika tidak ada lang_name, fallback ke NAMA FILE HURUF BESAR
+                            nama = data.get("lang_name", kode.upper()) 
+                            self.daftar_bahasa[nama] = kode
+                    except Exception:
+                        self.daftar_bahasa[kode.upper()] = kode
         
         # Jaga-jaga jika folder kosong
         if not self.daftar_bahasa:
-            self.daftar_bahasa = ["id"]
+            self.daftar_bahasa = {"Bahasa Indonesia": "id"}
 
     def muat_bahasa(self):
         file_lang = f"lang/{self.lang}.json"
@@ -277,8 +287,8 @@ class BPSR_Precision_GUI:
                     self.konfigurasi["file_suara"] = set_cfg.get('file_suara', self.konfigurasi["file_suara"])
                     
                     bahasa_tersimpan = set_cfg.get('bahasa', self.konfigurasi["bahasa"])
-                    # Validasi apakah bahasa masih ada di folder lang/
-                    if bahasa_tersimpan in self.daftar_bahasa:
+                    # Validasi apakah kode bahasa masih valid di dalam values daftar_bahasa
+                    if bahasa_tersimpan in self.daftar_bahasa.values():
                         self.konfigurasi["bahasa"] = bahasa_tersimpan
                     
                     self.lang = self.konfigurasi["bahasa"]
@@ -359,9 +369,7 @@ class BPSR_Precision_GUI:
 
         self.tambah_log(self.t("log_ready"))
         
-        # Angkat tombol setting ke lapisan teratas agar tidak tertutup frame lain
         self.tombol_pengaturan.lift()
-
 
     def perbarui_teks_ui(self):
         self.root.title(self.t("title"))
@@ -376,13 +384,13 @@ class BPSR_Precision_GUI:
             self.tombol_hapus_log.config(text=self.t("btn_clear"))
             self.tombol_pengaturan.config(text=self.t("settings"))
         self.var_status.set(self.t("status_ready"))
+        self.root.update() # Memaksa pembaruan antarmuka untuk Main Window
 
     def buka_pengaturan(self):
         if self.sedang_berjalan:
             messagebox.showwarning(self.t("warn_title"), self.t("warn_stop"))
             return
 
-        # Muat ulang bahasa secara dinamis jika pengguna menambahkan file json baru selagi aplikasi hidup
         self.muat_daftar_bahasa()
 
         jendela_pengaturan = tk.Toplevel(self.root)
@@ -391,7 +399,6 @@ class BPSR_Precision_GUI:
         jendela_pengaturan.configure(bg=self.colors["bg"])
         jendela_pengaturan.resizable(False, False)
 
-        # --- IKON ---
         try:
             jendela_pengaturan.iconbitmap("bpsr_icon.ico")
         except Exception:
@@ -403,12 +410,19 @@ class BPSR_Precision_GUI:
         
         opsi_slider = {"bg": self.colors["bg"], "fg": self.colors["text"], "troughcolor": self.colors["surface"], "highlightthickness": 0, "orient": tk.HORIZONTAL}
 
-        # --- Dropdown Bahasa Dinamis ---
+        # --- Dropdown Bahasa (Menampilkan Nama Human-Readable) ---
         lbl_lang = tk.Label(jendela_pengaturan, text=self.t("set_lang"), bg=self.colors["bg"], fg=self.colors["text"])
         lbl_lang.grid(row=0, column=0, sticky="w", pady=(10, 5), padx=10)
         
-        var_bahasa = tk.StringVar(value=self.lang)
-        opsi_bahasa = tk.OptionMenu(jendela_pengaturan, var_bahasa, *self.daftar_bahasa)
+        # Cari nama bahasa yang sedang aktif
+        nama_bahasa_saat_ini = "Bahasa Indonesia"
+        for nama, kode in self.daftar_bahasa.items():
+            if kode == self.lang:
+                nama_bahasa_saat_ini = nama
+                break
+
+        var_bahasa = tk.StringVar(value=nama_bahasa_saat_ini)
+        opsi_bahasa = tk.OptionMenu(jendela_pengaturan, var_bahasa, *self.daftar_bahasa.keys())
         opsi_bahasa.config(bg=self.colors["surface"], fg="white", highlightthickness=0)
         opsi_bahasa.grid(row=0, column=1, pady=(10, 5), padx=10, sticky="ew")
 
@@ -469,8 +483,11 @@ class BPSR_Precision_GUI:
             jeda_maksimum = slider_jeda_maks.get()
             if jeda_minimum > jeda_maksimum: jeda_maksimum = jeda_minimum
 
-            bahasa_baru = var_bahasa.get()
-            ganti_bahasa = self.lang != bahasa_baru
+            bahasa_baru_nama = var_bahasa.get()
+            # Menerjemahkan kembali nama "Bahasa Indonesia" menjadi kode "id"
+            bahasa_baru_kode = self.daftar_bahasa.get(bahasa_baru_nama, "id")
+            
+            ganti_bahasa = self.lang != bahasa_baru_kode
 
             self.konfigurasi.update({
                 "file_gambar": input_gambar.get().strip(),
@@ -480,15 +497,31 @@ class BPSR_Precision_GUI:
                 "putar_suara": var_suara.get(),
                 "mode_esp": var_esp.get(),
                 "file_suara": input_suara.get().strip(),
-                "bahasa": bahasa_baru
+                "bahasa": bahasa_baru_kode
             })
             
             self.simpan_konfigurasi()
             
             if ganti_bahasa:
-                self.lang = bahasa_baru
+                self.lang = bahasa_baru_kode
                 self.muat_bahasa()
                 self.perbarui_teks_ui()
+                
+                # --- UPDATE UI SECARA LANGSUNG DI DALAM JENDELA PENGATURAN ---
+                jendela_pengaturan.title(self.t("set_title"))
+                lbl_lang.config(text=self.t("set_lang"))
+                lbl_img.config(text=self.t("set_img"))
+                lbl_cmin.config(text=self.t("set_cmin"))
+                lbl_cmax.config(text=self.t("set_cmax"))
+                lbl_sens.config(text=self.t("set_sens"))
+                centang_esp.config(text=self.t("set_esp"))
+                centang_suara.config(text=self.t("set_snd"))
+                tombol_cari.config(text=self.t("set_browse"))
+                tombol_apply.config(text=self.t("set_apply"))
+                tombol_ok.config(text=self.t("set_ok"))
+                
+                # Memaksa sinkronisasi antarmuka GUI seketika
+                self.root.update()
 
             self.tambah_log(self.t("log_saved"))
             
@@ -556,14 +589,9 @@ class BPSR_Precision_GUI:
             self.label_header.grid_remove()
             if self.log_terlihat: self.ubah_log()
             
-            # 1. Tambah tinggi jadi 160 agar status bar selalu terlihat langsung
             self.root.geometry("350x160") 
             
-            # 2. Geser frame kontrol ke bawah sedikit (pady=25) agar ada ruang kosong di atasnya
             self.frame_kontrol.grid(row=1, column=0, padx=20, pady=(25, 5), sticky="ew")
-            
-            # 3. Taruh ikon setting di area kosong kanan atas. relx=0.97 akan membuatnya 
-            #    otomatis bergeser mengikuti panjang jendela ketika di-drag.
             self.tombol_pengaturan.place(relx=0.97, y=5, anchor="ne")
             self.tombol_pengaturan.lift()
             
@@ -582,10 +610,7 @@ class BPSR_Precision_GUI:
             
             if not self.log_terlihat: self.ubah_log()
             
-            # Kembalikan posisi frame kontrol ke asal
             self.frame_kontrol.grid(row=1, column=0, padx=20, pady=5, sticky="ew")
-            
-            # Kembalikan posisi icon setting ke mode penuh
             self.tombol_pengaturan.place(relx=0.96, y=10, anchor="ne")
             self.tombol_pengaturan.lift()
             
@@ -610,14 +635,13 @@ class BPSR_Precision_GUI:
         """Mencari jendela game dan mengembalikan koordinat area dalam (Client Area) di layar."""
         hwnd_target = 0
         
-        # Fungsi callback untuk mencari judul window
         def callback(hwnd, extra):
             nonlocal hwnd_target
             if win32gui.IsWindowVisible(hwnd):
                 title = win32gui.GetWindowText(hwnd)
                 if self.konfigurasi["jendela_target"] in title:
                     hwnd_target = hwnd
-                    return False # Berhenti mencari
+                    return False 
             return True
         
         try:
@@ -626,10 +650,7 @@ class BPSR_Precision_GUI:
             pass
             
         if hwnd_target:
-            # Dapatkan Client Rect (area murni dalam game tanpa bingkai/title bar)
             client_rect = win32gui.GetClientRect(hwnd_target)
-            
-            # Konversi titik (0,0) dari client area ke koordinat layar sebenarnya (Screen Coordinates)
             left_top = win32gui.ClientToScreen(hwnd_target, (0, 0))
             
             x = left_top[0]
@@ -637,7 +658,6 @@ class BPSR_Precision_GUI:
             w = client_rect[2]
             h = client_rect[3]
             
-            # Validasi agar tidak merekam saat gamenya di-minimize (biasanya koordinat minus sangat jauh)
             if x > -30000 and y > -30000 and w > 0 and h > 0:
                 return {"left": x, "top": y, "width": w, "height": h}
                 
@@ -678,18 +698,14 @@ class BPSR_Precision_GUI:
     # ================= LOGIKA PEMINDAIAN MSS & OPENCV (DINAMIS & AUTO-SCALE) =================
     def siklus_pindai(self):
         try:
-            # 1. Muat template asli (Dari resolusi 1920x1080)
             original_template = cv2.imread(self.konfigurasi["file_gambar"], cv2.IMREAD_GRAYSCALE)
             
-            # Resolusi saat gambar di-crop (Biarkan 1920x1080)
             base_res_w = 1920
             base_res_h = 1080
             
-            # Cache untuk menyimpan template yang sudah di-resize agar performa tetap ringan
             current_template = original_template.copy()
             template_h, template_w = current_template.shape
             
-            # Variabel untuk melacak ukuran window
             last_game_w = 0
             last_game_h = 0
             
@@ -707,30 +723,24 @@ class BPSR_Precision_GUI:
                         area_game = self.dapatkan_area_game()
                         
                         if area_game:
-                            # --- FITUR AUTO-SCALE TEMPLATE ---
                             game_w = area_game["width"]
                             game_h = area_game["height"]
                             
-                            # Jika ukuran window game berubah (misal dari Fullscreen ke Windowed)
                             if game_w != last_game_w or game_h != last_game_h:
-                                # Hitung rasio pengecilan/pembesaran
                                 scale_w = game_w / base_res_w
                                 scale_h = game_h / base_res_h
-                                scale = min(scale_w, scale_h) # Gunakan skala terkecil agar proporsional
+                                scale = min(scale_w, scale_h) 
                                 
                                 new_w = int(original_template.shape[1] * scale)
                                 new_h = int(original_template.shape[0] * scale)
                                 
-                                # Cegah error gambar menjadi terlalu kecil
                                 if new_w > 10 and new_h > 10:
-                                    # Ubah ukuran template secara dinamis!
                                     current_template = cv2.resize(original_template, (new_w, new_h), interpolation=cv2.INTER_AREA)
                                     template_h, template_w = current_template.shape
                                     self.tambah_log(f"Skala disesuaikan: {new_w}x{new_h} (Game: {game_w}x{game_h})")
                                 
                                 last_game_w = game_w
                                 last_game_h = game_h
-                            # ---------------------------------
 
                             if self.status_fokus_terakhir != "Focused":
                                 self.tambah_log(f"Game Terdeteksi: {self.konfigurasi['nama_proses']}")
@@ -738,13 +748,11 @@ class BPSR_Precision_GUI:
                                 self.var_status.set(self.t("status_scan"))
                                 self.status_fokus_terakhir = "Focused"
 
-                            # Kotak kuning ESP
                             self.esp_box = (area_game["left"], area_game["top"], area_game["width"], area_game["height"])
 
                             img_sct = np.array(sct.grab(area_game))
                             img_gray = cv2.cvtColor(img_sct, cv2.COLOR_BGRA2GRAY)
                             
-                            # Pencocokan gambar (Menggunakan current_template yang sudah di-resize otomatis!)
                             res = cv2.matchTemplate(img_gray, current_template, cv2.TM_CCOEFF_NORMED)
                             min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
                             
